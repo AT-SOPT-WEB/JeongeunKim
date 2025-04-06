@@ -57,6 +57,7 @@ aside {
   justify-content: center;
   display: flex;
   padding-top: 40px;
+  z-index: 20;
 }
 nav {
   position: fixed;
@@ -199,4 +200,26 @@ footer {
   align-items: center;
   color: white;
   padding-block: 20px;
+}
+.infinite-banner {
+}
+@keyframes slide {
+  0% {
+    transform: translateX(var(--slide-start-offset));
+  }
+  100% {
+    transform: translateX(var(--slide-end-offset));
+  }
+}
+.loopLeft {
+  display: flex;
+  direction: row;
+  animation: slide 10s infinite linear;
+  --slide-start-offset: 0%;
+  --slide-end-offset: -50%;
+  width: max-content;
+}
+.loopLeft > img {
+  width: 300px;
+  object-fit: cover;
 }
