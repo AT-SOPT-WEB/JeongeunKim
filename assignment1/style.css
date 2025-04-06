@@ -1,0 +1,38 @@
+:root {
+  --color-primary: oklch(0.44 0.1433 260.45);
+  --color-secondary: oklch(0.89 0.0192 279.5);
+  --color-point: oklch(0.85 0.0394 250.69);
+}
+body {
+  margin: 0;
+  padding-top: 40px;
+  background-color: var(--color-secondary);
+}
+header {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-primary);
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 30;
+  height: 40px;
+}
+header > div {
+  display: flex;
+}
+header > div:first-child {
+  flex: 1;
+  margin-left: 20px;
+  justify-content: flex-start;
+}
+header > div:nth-child(2) {
+  flex: 1;
+  justify-content: center;
+}
+header > div:last-child {
+  flex: 1;
+  margin-right: 20px;
+  justify-content: flex-end;
+}
