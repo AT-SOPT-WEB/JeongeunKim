@@ -1,0 +1,20 @@
+@keyframes carousel {
+  0% {
+    transform: translateX(var(--carousel-start-offset));
+  }
+  100% {
+    transform: translateX(var(--carousel-end-offset));
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
