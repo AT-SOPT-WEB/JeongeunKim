@@ -10,11 +10,11 @@
   </head>
   <body>
     <header>
-      <div>
+      <div class="logo">
         <img src="./assets/icons/logo.svg" alt="logo" width="24" height="24" />
       </div>
-      <div><h1>정은 블로그</h1></div>
-      <div>
+      <div class="title"><h1>정은 블로그</h1></div>
+      <div class="menu">
         <img src="./assets/icons/menu.svg" alt="menu" width="24" height="24" />
       </div>
     </header>
@@ -22,32 +22,32 @@
       <!-- 네비게이션 -->
       <aside>
         <nav>
-          <ul>
-            <li><a href="#rilakkuma">리락쿠마</a></li>
+          <ul class="nav">
+            <li class="nav--first"><a href="#rilakkuma">리락쿠마</a></li>
             <li><a href="#chiikawa">치이카와</a></li>
-            <li><a href="#eye">👀</a></li>
+            <li class="nav--last"><a href="#eye">👀</a></li>
           </ul>
         </nav>
       </aside>
+      <!-- 홈 상단 섹션 -->
       <div class="section-container">
-        <!-- 홈 상단 섹션 -->
         <section>
           <div class="content">
             <h2>SOPT 36기 YB 김정은입니다 ✌️</h2>
             <div class="grid">
               <div class="grid--top">
                 <img
-                  class="img grid--img1"
+                  class="img grid--first"
                   src="./assets/images/planting.webp"
                   alt="Korilakkuma is planting"
                 />
                 <img
-                  class="img grid--img2"
+                  class="img grid--second"
                   src="./assets/images/strawberry.webp"
                   alt="Korilakkuma with strawberry"
                 />
                 <img
-                  class="img grid--img3"
+                  class="img grid--third"
                   src="./assets/images/warming.webp"
                   alt="Warming Rilakkuma"
                 />
@@ -71,8 +71,8 @@
         <section>
           <div id="rilakkuma" class="content">
             <h3>리락쿠마</h3>
-            <div class="main-first">
-              <div class="card">
+            <div class="content--first">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/planting.webp"
@@ -81,7 +81,7 @@
                 <p class="like">♥</p>
                 <p>리</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/strawberry.webp"
@@ -90,7 +90,7 @@
                 <p class="like">♥</p>
                 <p>락</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/warming.webp"
@@ -99,7 +99,7 @@
                 <p class="like">♥</p>
                 <p>쿠</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/egg.webp"
@@ -108,7 +108,7 @@
                 <p class="like">♥</p>
                 <p>마</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/planting.webp"
@@ -117,7 +117,7 @@
                 <p class="like">♥</p>
                 <p>리</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/strawberry.webp"
@@ -126,7 +126,7 @@
                 <p class="like">♥</p>
                 <p>락</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/warming.webp"
@@ -135,7 +135,7 @@
                 <p class="like">♥</p>
                 <p>쿠</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/egg.webp"
@@ -148,8 +148,8 @@
           </div>
           <div id="chiikawa" class="content">
             <h3>치이카와</h3>
-            <div class="main-second">
-              <div class="card">
+            <div class="content--second">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/lie.webp"
@@ -158,7 +158,7 @@
                 <p class="like">♥</p>
                 <p>치</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/three.webp"
@@ -167,7 +167,7 @@
                 <p class="like">♥</p>
                 <p>이</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/hate.webp"
@@ -176,7 +176,7 @@
                 <p class="like">♥</p>
                 <p>카</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/book.webp"
@@ -185,7 +185,7 @@
                 <p class="like">♥</p>
                 <p>와</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/sleeping.webp"
@@ -194,7 +194,7 @@
                 <p class="like">♥</p>
                 <p>치</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/bed.webp"
@@ -203,7 +203,7 @@
                 <p class="like">♥</p>
                 <p>이</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/crying.webp"
@@ -212,7 +212,7 @@
                 <p class="like">♥</p>
                 <p>카</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/usagi.webp"
@@ -221,7 +221,7 @@
                 <p class="like">♥</p>
                 <p>와</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/doll.webp"
@@ -230,7 +230,7 @@
                 <p class="like">♥</p>
                 <p>치</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/many.webp"
@@ -239,7 +239,7 @@
                 <p class="like">♥</p>
                 <p>이</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/dance.webp"
@@ -248,7 +248,7 @@
                 <p class="like">♥</p>
                 <p>카</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/hug.webp"
@@ -261,8 +261,8 @@
           </div>
           <div id="eye" class="content">
             <h3>👀</h3>
-            <div class="main-third">
-              <div class="card">
+            <div class="content--third">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/lie.webp"
@@ -270,7 +270,7 @@
                 />
                 <p class="like">♥</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/planting.webp"
@@ -278,7 +278,7 @@
                 />
                 <p class="like">♥</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/dance.webp"
@@ -286,7 +286,7 @@
                 />
                 <p class="like">♥</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/book.webp"
@@ -294,7 +294,7 @@
                 />
                 <p class="like">♥</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/warming.webp"
@@ -302,7 +302,7 @@
                 />
                 <p class="like">♥</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/bed.webp"
@@ -310,7 +310,7 @@
                 />
                 <p class="like">♥</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/cake.webp"
@@ -318,7 +318,7 @@
                 />
                 <p class="like">♥</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/usagi.webp"
@@ -326,7 +326,7 @@
                 />
                 <p class="like">♥</p>
               </div>
-              <div class="card">
+              <div class="content--card">
                 <img
                   class="img"
                   src="./assets/images/strawberry.webp"
