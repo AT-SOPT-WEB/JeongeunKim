@@ -43,6 +43,8 @@ class Todo {
     incompleteBtn.addEventListener("click", () => this.showIncompleteList());
     priorityBtn.addEventListener("click", () => this.togglePriorityDropdown());
     addBtn.addEventListener("click", () => this.addTodo());
+    deleteBtn.addEventListener("click", () => this.deleteTodo());
+    completeToggleBtn.addEventListener("click", () => this.toggleComplete());
 
     renderTableHead(headList, todoHeader);
     renderTableBody(this.todoList, this.todoBody);
@@ -103,6 +105,50 @@ class Todo {
 
     this.searchInput.value = "";
     this.prioritySelect.value = "";
+  }
+
+  // to do 삭제하기
+  deleteTodo() {
+    const checked = this.todoBody.querySelectorAll(
+      "input[type='checkbox']:checked"
+    );
+    if (!checked.length) return alert(MESSAGE.NOT_CHECKED_LIST);
+
+    const checkedList = Array.from(checked).map((checkbox) =>
+      Number(checkbox.closest("tr").id)
+    );
+
+    this.todoList = this.todoList.filter(
+      (todo) => !checkedList.includes(todo.id)
+    );
+    setTodo(this.todoList);
+    this.render();
+    alert(MESSAGE.DELETED);
+  }
+
+  // to do 완료하기
+  toggleComplete() {
+    const checked = this.todoBody.querySelectorAll(
+      "input[type='checkbox']:checked"
+    );
+    if (!checked.length) return alert(MESSAGE.NOT_CHECKED_LIST);
+
+    const checkedList = Array.from(checked).map((checkbox) =>
+      Number(checkbox.closest("tr").id)
+    );
+
+    const alreadyCompleted = this.todoList.some(
+      (todo) => checkedList.includes(todo.id) && todo.completed
+    );
+    if (alreadyCompleted) return alert(MESSAGE.ALREADY_COMPLETED);
+
+    this.todoList = this.todoList.map((todo) =>
+      checkedList.includes(todo.id) ? { ...todo, completed: true } : todo
+    );
+
+    setTodo(this.todoList);
+    this.render();
+    alert(MESSAGE.COMPLETED);
   }
 }
 
