@@ -44,6 +44,8 @@ class Todo {
     priorityBtn.addEventListener("click", () => this.togglePriorityDropdown());
     addBtn.addEventListener("click", () => this.addTodo());
 
+    renderTableHead(headList, todoHeader);
+    renderTableBody(this.todoList, this.todoBody);
   }
 
   // to do 리스트 나타내기 (기본값은 local storage에 저장된 todoList)
