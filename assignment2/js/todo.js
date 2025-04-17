@@ -1,5 +1,6 @@
 import { getTodo, setTodo } from "./utils.js";
 import { renderTableHead, renderTableBody } from "./table.js";
+import { MESSAGE } from "./constants.js";
 import {
   initPriorityDropdownItems,
   initPrioritySelectOptions,
@@ -41,6 +42,7 @@ class Todo {
     completeBtn.addEventListener("click", () => this.showCompleteList());
     incompleteBtn.addEventListener("click", () => this.showIncompleteList());
     priorityBtn.addEventListener("click", () => this.togglePriorityDropdown());
+    addBtn.addEventListener("click", () => this.addTodo());
 
   }
 
@@ -66,11 +68,40 @@ class Todo {
     this.render(filtered);
   }
 
-  // 중요도 드롭다운 보기
+  // 중요도 목록 보기
   togglePriorityDropdown() {
     toggleDropdown(this.priorityDropdown);
   }
 
+  // to do 추가하기
+  addTodo() {
+    const title = this.searchInput.value.trim();
+    const priority = this.prioritySelect.value;
+
+    if (!title) {
+      alert(MESSAGE.EMPTY_TEXT);
+      return;
+    }
+
+    if (!priority) {
+      alert(MESSAGE.NOT_SELECT_PRIORITY);
+      return;
+    }
+
+    const newTodo = {
+      id: this.todoList.length + 1,
+      title,
+      completed: false,
+      priority: Number(priority),
+    };
+
+    this.todoList.push(newTodo);
+    setTodo(this.todoList);
+    this.render();
+
+    this.searchInput.value = "";
+    this.prioritySelect.value = "";
+  }
 }
 
 export default Todo;
