@@ -1,5 +1,9 @@
 import { getTodo, setTodo } from "./utils.js";
 import { renderTableHead, renderTableBody } from "./table.js";
+import {
+  initPriorityDropdownItems,
+  initPrioritySelectOptions,
+} from "./priority.js";
 
 class Todo {
   constructor({
@@ -25,9 +29,19 @@ class Todo {
     this.prioritySelect = prioritySelect;
     this.priorityDropdown = priorityDropdown;
 
+    initPriorityDropdownItems(
+      priority,
+      this.priorityDropdown,
+      this.todoList,
+      this.render.bind(this)
+    );
+    initPrioritySelectOptions(priority, this.prioritySelect);
+
     entireBtn.addEventListener("click", () => this.showEntireList());
     completeBtn.addEventListener("click", () => this.showCompleteList());
     incompleteBtn.addEventListener("click", () => this.showIncompleteList());
+    priorityBtn.addEventListener("click", () => this.togglePriorityDropdown());
+
   }
 
   // to do 리스트 나타내기 (기본값은 local storage에 저장된 todoList)
@@ -51,6 +65,12 @@ class Todo {
     const filtered = this.todoList.filter((todo) => !todo.completed);
     this.render(filtered);
   }
+
+  // 중요도 드롭다운 보기
+  togglePriorityDropdown() {
+    toggleDropdown(this.priorityDropdown);
+  }
+
 }
 
 export default Todo;
