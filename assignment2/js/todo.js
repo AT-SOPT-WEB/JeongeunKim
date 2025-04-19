@@ -4,6 +4,7 @@ import { MESSAGE } from "./constants.js";
 import {
   initPriorityDropdownItems,
   initPrioritySelectOptions,
+  toggleDropdown,
 } from "./priority.js";
 
 class Todo {
@@ -29,14 +30,16 @@ class Todo {
     this.searchInput = searchInput;
     this.prioritySelect = prioritySelect;
     this.priorityDropdown = priorityDropdown;
+    this.headList = headList;
+    this.priority = priority;
 
     initPriorityDropdownItems(
-      priority,
+      this.priority,
       this.priorityDropdown,
       this.todoList,
       this.render.bind(this)
     );
-    initPrioritySelectOptions(priority, this.prioritySelect);
+    initPrioritySelectOptions(this.priority, this.prioritySelect);
 
     entireBtn.addEventListener("click", () => this.showEntireList());
     completeBtn.addEventListener("click", () => this.showCompleteList());
@@ -46,7 +49,7 @@ class Todo {
     deleteBtn.addEventListener("click", () => this.deleteTodo());
     completeToggleBtn.addEventListener("click", () => this.toggleComplete());
 
-    renderTableHead(headList, todoHeader);
+    renderTableHead(this.headList, this.todoHeader);
     renderTableBody(this.todoList, this.todoBody);
   }
 
@@ -79,10 +82,10 @@ class Todo {
 
   // to do 추가하기
   addTodo() {
-    const title = this.searchInput.value.trim();
+    const title = this.searchInput.value;
     const priority = this.prioritySelect.value;
 
-    if (!title) {
+    if (!title.trim()) {
       alert(MESSAGE.EMPTY_TEXT);
       return;
     }

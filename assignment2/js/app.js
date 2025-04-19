@@ -14,7 +14,6 @@ new Todo({
   addBtn: document.getElementById("add-todo-button"),
   deleteBtn: document.getElementById("delete-todo-button"),
   completeToggleBtn: document.getElementById("change-completed-button"),
-  allCheckbox: document.getElementById("select-all-checkbox"),
   priority: PRIORITY,
   headList: TABLE_HEAD,
 });

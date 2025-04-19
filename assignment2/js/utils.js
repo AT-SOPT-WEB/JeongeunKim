@@ -1,27 +1,27 @@
 import { todos } from "./mock.js";
 
+/**
+ * todo 목록을 localStorage에 저장합니다.
+ *
+ * @param {Array<Object>} todoList - todo 객체 배열
+ */
 export function setTodo(todoList) {
   localStorage.setItem("todoList", JSON.stringify(todoList));
 }
 
+/**
+ * localStorage에서 todo 목록을 가져옵니다.
+ * 저장된 todo 목록이 없을 경우 mock 데이터를 저장하고 반환합니다.
+ *
+ * @returns {Array<Object>} 저장된 todo 객체 배열
+ */
 export function getTodo() {
-  localStorage.setItem("todoList", JSON.stringify(todos));
-  return [...todos];
-}
+  const todoList = localStorage.getItem("todoList");
 
-export function handleSelectAll(e) {
-  const isChecked = e.target.checked;
-  const checkboxes = document.querySelectorAll(".todo-checkbox");
-  checkboxes.forEach((checkbox) => {
-    checkbox.checked = isChecked;
-  });
-}
-
-export function updateSelectAllCheckbox() {
-  const selectAllCheckbox = document.getElementById("select-all-checkbox");
-  const checkboxes = document.querySelectorAll(".todo-checkbox");
-  const allChecked = Array.from(checkboxes).every(
-    (checkbox) => checkbox.checked
-  );
-  selectAllCheckbox.checked = allChecked;
+  if (todoList) {
+    return JSON.parse(todoList);
+  } else {
+    setTodo(todos);
+    return [...todos];
+  }
 }
