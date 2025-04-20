@@ -1,0 +1,23 @@
+h1 {
+  color: blue;
+}
+ul {
+  color: black;
+  width: 30px;
+  background-color: pink;
+  border: 1px solid black;
+}
+ul > li {
+  color: pink;
+  background-color: white;
+}
+ol {
+  color: black;
+  width: 30px;
+  background-color: pink;
+  border: 1px solid black;
+  margin: 30px;
+}
+a {
+  color: blue;
+}
