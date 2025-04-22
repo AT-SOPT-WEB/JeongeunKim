@@ -53,34 +53,34 @@ class Todo {
     renderTableBody(this.todoList, this.todoBody);
   }
 
-  // to do 리스트 나타내기 (기본값은 local storage에 저장된 todoList)
+  /** to do 리스트 나타내기 (기본값은 local storage에 저장된 todoList) */
   render(list = this.todoList) {
     renderTableBody(list, this.todoBody);
   }
 
-  // 전체 리스트 조회
+  /** 전채 투두 리스트 조회 */
   showEntireList() {
     this.render();
   }
 
-  // 완료 리스트 조회
+  /** 완료된 투두 리스트 조회 */
   showCompleteList() {
     const filtered = this.todoList.filter((todo) => todo.completed);
     this.render(filtered);
   }
 
-  // 미완료 리스트 조회
+  /** 미완료 투두 리스트 조회 */
   showIncompleteList() {
     const filtered = this.todoList.filter((todo) => !todo.completed);
     this.render(filtered);
   }
 
-  // 중요도 목록 보기
+  /** 중요도 목록 보기 */
   togglePriorityDropdown() {
     toggleDropdown(this.priorityDropdown);
   }
 
-  // to do 추가하기
+  /** to do 추가하기 */
   addTodo() {
     const title = this.searchInput.value;
     const priority = this.prioritySelect.value;
@@ -110,7 +110,7 @@ class Todo {
     this.prioritySelect.value = "";
   }
 
-  // to do 삭제하기
+  /** to do 삭제하기 */
   deleteTodo() {
     const checked = this.todoBody.querySelectorAll(
       "input[type='checkbox']:checked"
@@ -129,7 +129,7 @@ class Todo {
     alert(MESSAGE.DELETED);
   }
 
-  // to do 완료하기
+  /** to do 완료하기 */
   toggleComplete() {
     const checked = this.todoBody.querySelectorAll(
       "input[type='checkbox']:checked"
