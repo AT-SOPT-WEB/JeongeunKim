@@ -5,15 +5,12 @@ import {
   updateSelectAllCheckbox,
 } from "./checkbox.js";
 import { addDragEvent } from "./dragAndDrop.js";
+import { Todo } from "./types.js";
 
 /**
  * 테이블에 <tr> 요소를 생성합니다.
  *
- * @param {Object} todo - todo 요소 정보
- * @param {number} todo.id - todo id
- * @param {string} todo.title - todo 제목
- * @param {boolean} todo.completed - todo 완성여부
- * @param {number} todo.priority - todo 중요도 레벨
+ * @param {Todo} todo - todo 요소 정보
  * @returns {HTMLTableRowElement} 테이블의 행 요소
  */
 export function createTableRow({ id, title, completed, priority }) {
