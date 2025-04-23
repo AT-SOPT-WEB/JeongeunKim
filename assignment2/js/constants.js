@@ -9,4 +9,5 @@ export const MESSAGE = {
   DELETED: "삭제되었어요",
   ALREADY_COMPLETED: "이미 완료된 상태예요",
   COMPLETED: "완료되었어요",
+  EMPTY_TODO: "존재하는 to do가 없어요.",
 };

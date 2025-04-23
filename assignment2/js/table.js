@@ -6,6 +6,7 @@ import {
 } from "./checkbox.js";
 import { addDragEvent } from "./dragAndDrop.js";
 import { Todo } from "./types.js";
+import { MESSAGE } from "./constants.js";
 
 /**
  * 테이블에 <tr> 요소를 생성합니다.
@@ -91,7 +92,7 @@ export function renderTableBody(todoList, container) {
     const row = document.createElement("tr");
     const empty = document.createElement("td");
     empty.colSpan = 4;
-    empty.textContent = "존재하는 to do가 없어요.";
+    empty.textContent = MESSAGE.EMPTY_TODO;
     row.appendChild(empty);
     container.appendChild(row);
     return;

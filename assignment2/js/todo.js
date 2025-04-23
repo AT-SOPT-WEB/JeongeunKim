@@ -6,6 +6,7 @@ import {
   initPrioritySelectOptions,
   toggleDropdown,
 } from "./priority.js";
+import { resetCheckbox } from "./checkbox.js";
 
 class Todo {
   constructor({
@@ -124,7 +125,12 @@ class Todo {
     this.todoList = this.todoList.filter(
       (todo) => !checkedList.includes(todo.id)
     );
+
     setTodo(this.todoList);
+
+    const allCheckbox = document.getElementById("select-all-checkbox");
+    resetCheckbox(allCheckbox);
+
     this.render();
     alert(MESSAGE.DELETED);
   }
