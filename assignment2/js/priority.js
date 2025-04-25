@@ -1,7 +1,7 @@
 import { Priority, Todo } from "./types.js";
 
 /**
- * 중요도 드롭다운 요소를 초기화하고 필터링 기능을 등록합니다.
+ * 중요도 드롭다운에 필터링 기능을 가진 버튼을 넣습니다
  *
  * @param {Array<Priority>} priorityList - 중요도 목록
  * @param {HTMLElement} priorityDropdown - 드롭다운 요소

@@ -10,15 +10,15 @@ import { resetCheckbox } from "./checkbox.js";
 
 class Todo {
   constructor({
-    todoHeader,
-    todoBody,
-    entireBtn,
-    completeBtn,
-    incompleteBtn,
-    priorityBtn,
+    todoTableHeader,
+    todoTableBody,
+    entireListBtn,
+    completeListBtn,
+    incompleteListBtn,
+    priorityFilterBtn,
     priorityDropdown,
     searchInput,
-    prioritySelect,
+    prioritySelector,
     addBtn,
     deleteBtn,
     completeToggleBtn,
@@ -26,10 +26,10 @@ class Todo {
     headList,
   }) {
     this.todoList = getTodo();
-    this.todoBody = todoBody;
-    this.todoHeader = todoHeader;
+    this.todoTableBody = todoTableBody;
+    this.todoTableHeader = todoTableHeader;
     this.searchInput = searchInput;
-    this.prioritySelect = prioritySelect;
+    this.prioritySelector = prioritySelector;
     this.priorityDropdown = priorityDropdown;
     this.headList = headList;
     this.priority = priority;
@@ -40,23 +40,25 @@ class Todo {
       this.todoList,
       this.render.bind(this)
     );
-    initPrioritySelectOptions(this.priority, this.prioritySelect);
+    initPrioritySelectOptions(this.priority, this.prioritySelector);
 
-    entireBtn.addEventListener("click", () => this.showEntireList());
-    completeBtn.addEventListener("click", () => this.showCompleteList());
-    incompleteBtn.addEventListener("click", () => this.showIncompleteList());
-    priorityBtn.addEventListener("click", () => this.togglePriorityDropdown());
+    entireListBtn.addEventListener("click", () => this.showEntireList());
+    completeListBtn.addEventListener("click", () => this.showCompleteList());
+    incompleteListBtn.addEventListener("click", () =>
+      this.showIncompleteList()
+    );
+    priorityFilterBtn.addEventListener("click", () => this.togglePriorityDropdown());
     addBtn.addEventListener("click", () => this.addTodo());
     deleteBtn.addEventListener("click", () => this.deleteTodo());
     completeToggleBtn.addEventListener("click", () => this.toggleComplete());
 
-    renderTableHead(this.headList, this.todoHeader);
-    renderTableBody(this.todoList, this.todoBody);
+    renderTableHead(this.headList, this.todoTableHeader);
+    renderTableBody(this.todoList, this.todoTableBody, this.todoTableHeader);
   }
 
   /** to do 리스트 나타내기 (기본값은 local storage에 저장된 todoList) */
   render(list = this.todoList) {
-    renderTableBody(list, this.todoBody);
+    renderTableBody(list, this.todoTableBody);
   }
 
   /** 전채 투두 리스트 조회 */
@@ -84,7 +86,7 @@ class Todo {
   /** to do 추가하기 */
   addTodo() {
     const title = this.searchInput.value;
-    const priority = this.prioritySelect.value;
+    const priority = this.prioritySelector.value;
 
     if (!title.trim()) {
       alert(MESSAGE.EMPTY_TEXT);
@@ -108,12 +110,12 @@ class Todo {
     this.render();
 
     this.searchInput.value = "";
-    this.prioritySelect.value = "";
+    this.prioritySelector.value = "";
   }
 
   /** to do 삭제하기 */
   deleteTodo() {
-    const checked = this.todoBody.querySelectorAll(
+    const checked = this.todoTableBody.querySelectorAll(
       "input[type='checkbox']:checked"
     );
     if (!checked.length) return alert(MESSAGE.NOT_CHECKED_LIST);
@@ -137,7 +139,7 @@ class Todo {
 
   /** to do 완료하기 */
   toggleComplete() {
-    const checked = this.todoBody.querySelectorAll(
+    const checked = this.todoTableBody.querySelectorAll(
       "input[type='checkbox']:checked"
     );
     if (!checked.length) return alert(MESSAGE.NOT_CHECKED_LIST);

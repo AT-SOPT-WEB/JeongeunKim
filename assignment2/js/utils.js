@@ -1,4 +1,4 @@
-import { todos } from "./mock.js";
+import { todos } from "../mocks/todoData.js";
 import { Todo } from "./types.js";
 
 /**

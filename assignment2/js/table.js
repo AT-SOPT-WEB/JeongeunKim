@@ -85,13 +85,13 @@ export function renderTableHead(headList, todoHeader) {
  * @param {HTMLElement} container - <tbody> 요소
  * @returns {void}
  */
-export function renderTableBody(todoList, container) {
+export function renderTableBody(todoList, container, todoHeader) {
   container.innerHTML = "";
 
   if (todoList.length === 0) {
     const row = document.createElement("tr");
     const empty = document.createElement("td");
-    empty.colSpan = 4;
+    empty.colSpan = todoHeader.length;
     empty.textContent = MESSAGE.EMPTY_TODO;
     row.appendChild(empty);
     container.appendChild(row);
