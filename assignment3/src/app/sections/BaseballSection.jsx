@@ -67,6 +67,59 @@ const BaseballSection = () => {
     setInputText(value);
   };
 
+  /**
+   * 엔터 키 입력 시 결과를 체크합니다.
+   * @param {React.KeyboardEvent<HTMLInputElement>} e - 키보드 이벤트
+   */
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      if (errorMessage) return;
+      const { strike, ball } = checkResult();
+      showResult({ strike, ball });
+    }
+  };
+
+  /**
+   * 현재 입력값과 정답을 비교하여 스트라이크와 볼을 계산합니다.
+   * @returns {{strike: number, ball: number}} 게임 결과
+   */
+  const checkResult = () => {
+    let strike = 0;
+    let ball = 0;
+
+    for (let i = 0; i < LENGTH; i++) {
+      const number = Number(inputText[i]);
+      if (number === answer.current[i]) {
+        strike++;
+      } else if (answer.current.includes(number)) ball++;
+    }
+
+    return { strike, ball };
+  };
+
+  /**
+   * 계산된 결과를 화면에 출력하고 승리 시 상태를 초기화합니다.
+   * @param {{ strike: number, ball: number }} - 게임 결과 객체
+   */
+  const showResult = ({ strike, ball }) => {
+    if (strike === 3) {
+      setResultText("⚾️ 게임에 이겼어요! ⚾️");
+
+      setTimeout(() => {
+        setInputText("");
+        setErrorMessage("");
+        setResultText("");
+        setPlayLog([]);
+        answer.current = generateAnswerNumber();
+      }, 3000);
+    } else {
+      setResultText(`${strike} 스트라이크 ${ball} 볼`);
+    }
+
+    const logText = `${inputText} - ${strike}S ${ball}B`;
+    setPlayLog((prev) => [...prev, logText]);
+  };
+
   return (
     <div css={container}>
       <Input
@@ -74,6 +127,7 @@ const BaseballSection = () => {
         text={inputText}
         handleInputChange={handleInputChange}
         placeholder="세 자리 숫자를 입력해주세요"
+        onKeyDown={handleKeyDown}
       />
       {errorMessage && <p css={error}>{errorMessage}</p>}
       {resultText && <p css={win}>{resultText}</p>}
