@@ -1,10 +1,6 @@
 import { VIEW_OPTION } from "../../constants/header";
-import {
-  HeaderButton,
-  HeaderButtonContainer,
-  HeaderContainer,
-  Title,
-} from "./Header.styles";
+import Button from "../button/Button";
+import { HeaderButtonContainer, HeaderContainer, Title } from "./Header.styles";
 
 export default function Header({ handleRenderView, clickedOption }) {
   return (
@@ -12,14 +8,12 @@ export default function Header({ handleRenderView, clickedOption }) {
       <Title>숫자야구 & 깃허브 검색</Title>
       <HeaderButtonContainer>
         {Object.values(VIEW_OPTION).map((value) => (
-          <HeaderButton
-            onClick={handleRenderView}
-            value={value}
+          <Button
+            onClickButton={handleRenderView}
             isSelected={clickedOption === value}
             key={value}
-          >
-            {value}
-          </HeaderButton>
+            text={value}
+          />
         ))}
       </HeaderButtonContainer>
     </HeaderContainer>
