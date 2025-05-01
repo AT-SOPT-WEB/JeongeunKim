@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import Input from "../components/input/Input";
+import { ERROR_MESSAGE, LENGTH } from "../constants/baseball";
 import PlayLog from "../components/playLog/PlayLog";
 import { css } from "@emotion/react";
 import { colors } from "../constants/colors";
@@ -22,6 +23,21 @@ const win = css`
   color: ${colors.secondary};
   font-weight: 600;
 `;
+
+/**
+ * 중복되지 않는 랜덤 숫자를 생성합니다.
+ * @param {number} - 생성할 숫자 개수 (기본값 LENGTH)
+ * @returns {Array<Number>} 생성한 랜덤 숫자 배열
+ */
+const generateAnswerNumber = (length = LENGTH) => {
+  const answer = [];
+  while (answer.length < length) {
+    const randomNumber = Math.floor(Math.random() * 10);
+    if (!answer.includes(randomNumber)) answer.push(randomNumber);
+  }
+
+  return answer;
+};
 
 const BaseballSection = () => {
 
