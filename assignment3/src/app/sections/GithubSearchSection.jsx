@@ -5,12 +5,13 @@ import { addLocalStorage, getLocalStorage } from "../utils/storage";
 import { Section } from "./Section.styles";
 import { getUserInfo } from "../api/github";
 import { LOCAL_STORAGE } from "../constants/key";
+import { ERROR_MESSAGE } from "../constants/github";
 
 const GithubSearchSection = () => {
   const [inputText, setInputText] = useState("");
   const [isShowCard, setIsShowCard] = useState(false);
   const [searchLog, setSearchLog] = useState(
-    getLocalStorage(LOCAL_STORAGE.SEARCH_GITHUB) || []
+    getLocalStorage(LOCAL_STORAGE.SEARCH_GITHUB)
   );
   const [userInfo, setUserInfo] = useState({});
   const [message, setMessage] = useState("");
@@ -18,7 +19,6 @@ const GithubSearchSection = () => {
   /**
    * 검색 요청 후 데이터를 핸들링합니다.
    *
-   * @async
    */
   const handleSearch = async () => {
     const trimmedInputText = inputText.trim();
@@ -29,10 +29,12 @@ const GithubSearchSection = () => {
     const data = await getUserInfo(trimmedInputText);
 
     if (data) {
+      setMessage("");
       setUserInfo(data);
       setIsShowCard(true);
     } else {
-      setMessage("존재하지 않는 유저예요.");
+      setIsShowCard(false);
+      setMessage(ERROR_MESSAGE.NOT_FOUND_USER);
     }
 
     setInputText("");
