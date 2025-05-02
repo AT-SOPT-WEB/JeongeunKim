@@ -1,42 +1,95 @@
 import { useState } from "react";
-import Input from "../components/input/Input";
 import GithubCard from "../components/github-card/GithubCard";
+import SearchArea from "../components/search/SearchArea";
+import { addLocalStorage, getLocalStorage } from "../utils/storage";
+import { Section } from "./Section.styles";
+import { getUserInfo } from "../api/github";
+import { LOCAL_STORAGE } from "../constants/key";
 
 const GithubSearchSection = () => {
   const [inputText, setInputText] = useState("");
   const [isShowCard, setIsShowCard] = useState(false);
+  const [searchLog, setSearchLog] = useState(
+    getLocalStorage(LOCAL_STORAGE.SEARCH_GITHUB) || []
+  );
+  const [userInfo, setUserInfo] = useState({});
+  const [message, setMessage] = useState("");
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+  /**
+   * 검색 요청 후 데이터를 핸들링합니다.
+   *
+   * @async
+   */
+  const handleSearch = async () => {
+    const trimmedInputText = inputText.trim();
+
+    addLocalStorage(LOCAL_STORAGE.SEARCH_GITHUB, trimmedInputText);
+    setSearchLog(getLocalStorage(LOCAL_STORAGE.SEARCH_GITHUB));
+
+    const data = await getUserInfo(trimmedInputText);
+
+    if (data) {
+      setUserInfo(data);
       setIsShowCard(true);
+    } else {
+      setMessage("존재하지 않는 유저예요.");
+    }
+
+    setInputText("");
+  };
+
+  /**
+   * Enter 키를 누르면 GitHub 사용자 정보를 요청합니다.
+   *
+   * @param {React.KeyboardEvent<HTMLInputElement>} e 키보드 이벤트
+   */
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && inputText.trim()) {
+      handleSearch();
     }
   };
 
+  /**
+   * 카드 닫기 버튼 클릭 시 상태를 토글합니다.
+   */
   const handleCloseButtonClick = () => {
     setIsShowCard((prev) => !prev);
   };
 
+  const {
+    login: id,
+    html_url: githubUrl,
+    avatar_url,
+    bio,
+    followers,
+    following,
+    name,
+  } = userInfo || {};
+
   return (
-    <>
-      <Input
-        text={inputText}
-        handleInputChange={(e) => setInputText(e.target.value)}
-        placeholder="Github 프로필을 검색해보세요"
-        onKeyDown={handleKeyDown}
+    <Section>
+      <SearchArea
+        inputText={inputText}
+        handleInput={(e) => setInputText(e.target.value)}
+        handleKeyDown={handleKeyDown}
+        searchLog={searchLog}
+        setSearchLog={setSearchLog}
       />
-      {isShowCard && (
+      {isShowCard ? (
         <GithubCard
-          imgUrl="https://avatars.githubusercontent.com/u/128335727?v=4"
-          name="김정은"
-          id="Jeong-Ag"
-          bio="🥨"
-          githubUrl="https://github.com/Jeong-Ag"
-          followers="34"
-          following="32"
+          avatarUrl={avatar_url}
+          name={name}
+          id={id}
+          bio={bio}
+          githubUrl={githubUrl}
+          followers={followers}
+          following={following}
           handleCloseButton={handleCloseButtonClick}
         />
+      ) : (
+        <p>{message}</p>
       )}
-    </>
+    </Section>
   );
 };
 
