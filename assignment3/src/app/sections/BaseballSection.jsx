@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import Input from "../components/input/Input";
 import { isDuplicate } from "../utils/string";
-import { ERROR_MESSAGE, LENGTH } from "../constants/baseball";
+import { CHANCE, LENGTH, MESSAGE } from "../constants/baseball";
 import PlayLog from "../components/play-log/PlayLog";
 import { css } from "@emotion/react";
 import { colors } from "../constants/colors";
@@ -39,6 +39,7 @@ const BaseballSection = () => {
   const [resultText, setResultText] = useState("");
   const [playLog, setPlayLog] = useState([]);
   const answer = useRef(generateAnswerNumber());
+  const [playCnt, setPlayCnt] = useState(1);
 
   /**
    * 입력값이 변경된 경우 유효성 검사를 진행하고 통과되면 상태를 업데이트 합니다.
@@ -50,11 +51,11 @@ const BaseballSection = () => {
     setErrorMessage("");
 
     if (/[^0-9]/.test(value)) {
-      setErrorMessage(ERROR_MESSAGE.ONLY_NUMBER);
+      setErrorMessage(MESSAGE.ONLY_NUMBER);
     } else if (value.length > LENGTH) {
-      setErrorMessage(ERROR_MESSAGE.CHECK_MAX_LENGTH);
+      setErrorMessage(MESSAGE.CHECK_MAX_LENGTH);
     } else if (value.length === LENGTH && isDuplicate(value.split("")))
-      setErrorMessage(ERROR_MESSAGE.DUPLICATED_NUMBER);
+      setErrorMessage(MESSAGE.DUPLICATED_NUMBER);
 
     setInputText(value);
   };
@@ -68,6 +69,7 @@ const BaseballSection = () => {
       if (errorMessage) return;
       const { strike, ball } = checkResult();
       showResult({ strike, ball });
+      setInputText("");
     }
   };
 
@@ -95,7 +97,7 @@ const BaseballSection = () => {
    */
   const showResult = ({ strike, ball }) => {
     if (strike === 3) {
-      setResultText("⚾️ 게임에 이겼어요! ⚾️");
+      setResultText(MESSAGE.WIN);
 
       setTimeout(() => {
         setInputText("");
@@ -110,6 +112,26 @@ const BaseballSection = () => {
 
     const logText = `${inputText} - ${strike}S ${ball}B`;
     setPlayLog((prev) => [...prev, logText]);
+
+    checkValidPlayChange();
+
+    setPlayCnt((prev) => prev + 1);
+  };
+
+  const checkValidPlayChange = () => {
+    console.log(playCnt);
+    if (playCnt >= CHANCE) {
+      setResultText(MESSAGE.LOSE);
+
+      setTimeout(() => {
+        setInputText("");
+        setErrorMessage("");
+        setPlayLog([]);
+        setResultText("");
+        answer.current = generateAnswerNumber();
+        setPlayCnt(1);
+      }, 5000);
+    }
   };
 
   return (
