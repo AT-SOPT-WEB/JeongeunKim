@@ -8,7 +8,6 @@ import { LOCAL_STORAGE } from "../constants/key";
 import { ERROR_MESSAGE } from "../constants/github";
 
 const GithubSearchSection = () => {
-  const [inputText, setInputText] = useState("");
   const [isShowCard, setIsShowCard] = useState(false);
   const [searchLog, setSearchLog] = useState(
     getLocalStorage(LOCAL_STORAGE.SEARCH_GITHUB)
@@ -20,8 +19,8 @@ const GithubSearchSection = () => {
    * 검색 요청 후 데이터를 핸들링합니다.
    *
    */
-  const handleSearch = async () => {
-    const trimmedInputText = inputText.trim();
+  const handleSearch = async (text) => {
+    const trimmedInputText = text.trim();
 
     addLocalStorage(LOCAL_STORAGE.SEARCH_GITHUB, trimmedInputText);
     setSearchLog(getLocalStorage(LOCAL_STORAGE.SEARCH_GITHUB));
@@ -35,19 +34,6 @@ const GithubSearchSection = () => {
     } else {
       setIsShowCard(false);
       setMessage(ERROR_MESSAGE.NOT_FOUND_USER);
-    }
-
-    setInputText("");
-  };
-
-  /**
-   * Enter 키를 누르면 GitHub 사용자 정보를 요청합니다.
-   *
-   * @param {React.KeyboardEvent<HTMLInputElement>} e 키보드 이벤트
-   */
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && inputText.trim()) {
-      handleSearch();
     }
   };
 
@@ -71,9 +57,7 @@ const GithubSearchSection = () => {
   return (
     <Section>
       <SearchArea
-        inputText={inputText}
-        handleInput={(e) => setInputText(e.target.value)}
-        handleKeyDown={handleKeyDown}
+        handleSearch={handleSearch}
         searchLog={searchLog}
         setSearchLog={setSearchLog}
       />

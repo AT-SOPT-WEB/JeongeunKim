@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { colors } from "../../constants/colors";
 
-export const LogButton = styled.div`
+export const LogButton = styled.button`
+  all: unset;
+  cursor: pointer;
   font-size: 1em;
   font-weight: 500;
   color: ${colors.primary};
@@ -9,6 +11,8 @@ export const LogButton = styled.div`
   background-color: ${colors.primary}4D;
   border-radius: calc(infinity * 1px);
   border: 1px solid ${colors.primary};
+  display: flex;
+  gap: 1rem;
 `;
 
 export const LogButtonContainer = styled.div`
@@ -28,11 +32,4 @@ export const LogContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-`;
-
-export const DeleteLogButton = styled.button`
-  all: unset;
-  cursor: pointer;
-  margin-left: 8px;
-  font-weight: bold;
 `;

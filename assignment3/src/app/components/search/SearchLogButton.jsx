@@ -1,11 +1,18 @@
 import PropTypes from "prop-types";
-import { DeleteLogButton, LogButton } from "./Search.styles";
+import { LogButton } from "./Search.styles";
 
-const SearchLogButton = ({ text, handleDeleteClick }) => {
+const SearchLogButton = ({ text, handleDeleteClick, ...props }) => {
   return (
-    <LogButton>
+    <LogButton {...props}>
       {text}
-      <DeleteLogButton onClick={handleDeleteClick}>X</DeleteLogButton>
+      <span
+        onClick={(e) => {
+          e.stopPropagation();
+          handleDeleteClick();
+        }}
+      >
+        X
+      </span>
     </LogButton>
   );
 };
