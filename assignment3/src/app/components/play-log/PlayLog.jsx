@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { LogBox, LogBoxContainer } from "./PlayLog.styles";
 
 const PlayLog = ({ logList }) => {
@@ -8,6 +10,10 @@ const PlayLog = ({ logList }) => {
       ))}
     </LogBoxContainer>
   );
+};
+
+PlayLog.propTypes = {
+  logList: PropTypes.string.isRequired,
 };
 
 export default PlayLog;

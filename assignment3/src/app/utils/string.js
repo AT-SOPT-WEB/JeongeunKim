@@ -5,6 +5,5 @@
  */
 export const isDuplicate = (arr) => {
   const filtered = new Set(arr);
-  console.log(arr, filtered);
   return arr.length !== filtered.size;
 };
