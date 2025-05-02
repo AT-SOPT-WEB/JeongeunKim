@@ -2,7 +2,13 @@
 
 import PropTypes from "prop-types";
 import Button from "../button/Button";
-import { Avatar, Chip, ChipContainer, Card } from "./GithubCard.styles";
+import {
+  Avatar,
+  Chip,
+  ChipContainer,
+  Card,
+  InfoContainer,
+} from "./GithubCard.styles";
 import { css } from "@emotion/react";
 
 const buttonPosition = css`
@@ -14,20 +20,12 @@ const buttonPosition = css`
 
 const githubName = css`
   font-weight: 500;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: white;
-`;
-
-const githubLink = css`
-  color: white;
-  text-decoration: underline;
-  margin-bottom: 1rem;
-  display: inline-block;
-  font-size: 1rem;
 `;
 
 const GithubCard = ({
-  imgUrl,
+  avatarUrl,
   name,
   id,
   bio,
@@ -38,8 +36,8 @@ const GithubCard = ({
 }) => {
   return (
     <Card>
-      <Avatar src={imgUrl} alt="깃허브 프로필 이미지" />
-      <div>
+      <Avatar src={avatarUrl} alt="깃허브 프로필 이미지" />
+      <InfoContainer>
         <Button text="X" css={buttonPosition} onClick={handleCloseButton} />
         <a
           css={githubName}
@@ -51,14 +49,6 @@ const GithubCard = ({
         </a>
         <p>{id}</p>
         <p>{bio}</p>
-        <a
-          css={githubLink}
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {githubUrl}
-        </a>
         <ChipContainer>
           <Chip>
             <p>followers</p>
@@ -69,19 +59,19 @@ const GithubCard = ({
             <p>{following}</p>
           </Chip>
         </ChipContainer>
-      </div>
+      </InfoContainer>
     </Card>
   );
 };
 
 GithubCard.propTypes = {
-  imgUrl: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,
   githubUrl: PropTypes.string.isRequired,
-  followers: PropTypes.string.isRequired,
-  following: PropTypes.string.isRequired,
+  followers: PropTypes.number.isRequired,
+  following: PropTypes.number.isRequired,
   handleCloseButton: PropTypes.func.isRequired,
 };
 
