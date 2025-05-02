@@ -12,12 +12,12 @@ export const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 12px;
+  gap: 2rem;
+  padding: 2rem;
   background-color: ${colors.background};
 `;
 
 export const HeaderButtonContainer = styled.div`
   display: flex;
-  gap: 4px;
+  gap: 1rem;
 `;

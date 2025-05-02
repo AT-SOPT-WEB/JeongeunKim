@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { colors } from "../../constants/colors";
+import { fadeInUp } from "../../styles/animations";
 
 export const LogBox = styled.div`
   width: 40rem;
@@ -9,6 +10,7 @@ export const LogBox = styled.div`
   text-align: center;
   border-radius: 12px;
   border: 1px solid ${colors.primary};
+  animation: ${fadeInUp} 0.3s ease-out;
 `;
 
 export const LogBoxContainer = styled.div`

@@ -4,18 +4,10 @@ import { useRef, useState } from "react";
 import Input from "../components/input/Input";
 import { isDuplicate } from "../utils/string";
 import { ERROR_MESSAGE, LENGTH } from "../constants/baseball";
-import PlayLog from "../components/playLog/PlayLog";
+import PlayLog from "../components/play-log/PlayLog";
 import { css } from "@emotion/react";
 import { colors } from "../constants/colors";
-
-const container = css`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-top: 4rem;
-  align-items: center;
-  justify-content: center;
-`;
+import { Section } from "./Section.styles";
 
 const error = css`
   color: red;
@@ -121,7 +113,7 @@ const BaseballSection = () => {
   };
 
   return (
-    <div css={container}>
+    <Section>
       <Input
         type="number"
         text={inputText}
@@ -132,7 +124,7 @@ const BaseballSection = () => {
       {errorMessage && <p css={error}>{errorMessage}</p>}
       {resultText && <p css={win}>{resultText}</p>}
       <PlayLog logList={playLog} />
-    </div>
+    </Section>
   );
 };
 
