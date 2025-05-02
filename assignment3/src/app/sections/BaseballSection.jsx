@@ -40,7 +40,6 @@ const BaseballSection = () => {
   const [playLog, setPlayLog] = useState([]);
   const answer = useRef(generateAnswerNumber());
   const [playCnt, setPlayCnt] = useState(1);
-
   /**
    * 입력값이 변경된 경우 유효성 검사를 진행하고 통과되면 상태를 업데이트 합니다.
    * @param {React.ChangeEvent<HTMLInputElement>} e - 입력 이벤트
@@ -104,6 +103,7 @@ const BaseballSection = () => {
         setErrorMessage("");
         setResultText("");
         setPlayLog([]);
+        setPlayCnt(1);
         answer.current = generateAnswerNumber();
       }, 3000);
     } else {
@@ -113,9 +113,9 @@ const BaseballSection = () => {
     const logText = `${inputText} - ${strike}S ${ball}B`;
     setPlayLog((prev) => [...prev, logText]);
 
-    checkValidPlayChange();
-
     setPlayCnt((prev) => prev + 1);
+
+    checkValidPlayChange();
   };
 
   const checkValidPlayChange = () => {
