@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <title>To Do List</title>
+  </head>
+  <body>
+    <header><h1>TO DO LIST</h1></header>
+    <main>
+      <nav class="nav-section">
+        <button id="entire-button">전체</button
+        ><button id="complete-button">완료됨</button
+        ><button id="incomplete-button">미완료</button>
+        <div id="dropdown-selector">
+          <button id="priority-button" type="button">
+            중요도
+            <img
+              src="./assets/icons/down-arrow.svg"
+              alt="중요도 목록 아이콘"
+              class="icon"
+            />
+          </button>
+          <ul id="priority-dropdown"></ul>
+        </div>
+      </nav>
+      <section class="add-section">
+        <input
+          type="text"
+          id="search-bar-input"
+          placeholder="할 일을 입력하세요"
+        />
+        <select name="priority-select" id="priority-select">
+          <option value="" disabled selected>중요도 선택</option>
+        </select>
+        <button id="add-todo-button">추가</button>
+      </section>
+      <section class="manage-section">
+        <button id="delete-todo-button">삭제</button>
+        <button id="change-completed-button">완료</button>
+      </section>
+      <section>
+        <table id="todo">
+          <thead id="todo-header"></thead>
+          <tbody id="todo-body"></tbody>
+        </table>
+      </section>
+    </main>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

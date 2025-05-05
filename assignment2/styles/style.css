@@ -1,0 +1,99 @@
+/* 전체, 완료, 미완료, 중요도 버튼 섹션 */
+.nav-section {
+  display: flex;
+  gap: var(--gap-md);
+}
+
+/* 중요도 드롭다운 */
+#priority-dropdown {
+  position: absolute;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  background-color: white;
+  border: var(--border-width) solid var(--color-light);
+  width: 100%;
+  z-index: 5;
+}
+
+.priority-dropdown-button {
+  background-color: white;
+  color: black;
+  border-radius: var(--border-radius);
+  width: 100%;
+  font-size: var(--font-size-sm);
+  display: flex;
+}
+
+.priority-dropdown-button:hover {
+  background-color: var(--color-light);
+}
+
+/* 중요도 선택 버튼 */
+#priority-button {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+#dropdown-selector {
+  position: relative;
+  display: block;
+}
+
+/* to do 추가 섹션 */
+.add-section {
+  display: flex;
+  gap: var(--gap-md);
+}
+
+/* to do 추가 제목 입력 */
+#search-bar-input {
+  width: 32rem;
+  border: var(--border-width) solid var(--color-light);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+  font-size: var(--font-size-sm);
+}
+
+#search-bar-input:focus {
+  outline: var(--border-width) solid var(--color-primary);
+}
+
+/* to do 추가 중요도 선택 */
+#priority-select {
+  font-size: var(--font-size-base);
+  border: var(--border-width) solid var(--color-primary);
+  border-radius: var(--border-radius);
+  outline: none;
+  padding-inline: var(--gap-sm);
+}
+
+#priority-select:focus {
+  outline: var(--border-width) solid var(--color-primary);
+}
+
+/* 삭제, 완료 버튼 섹션 */
+.manage-section {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--gap-md);
+}
+
+/* to do 테이블 */
+#todo-header: {
+  width: 100%;
+}
+
+#todo {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#icon {
+  width: 12px;
+  height: 12px;
+}

@@ -1,0 +1,80 @@
+@import "./reset.css";
+
+:root {
+  --color-primary: oklch(0.81 0.0493 265);
+  --color-dark: oklch(0.68 0.0493 265);
+  --color-light: oklch(0.94 0.0074 265);
+
+  --border-radius: 0.375rem;
+  --border-width: 0.1rem;
+
+  --font-size-sm: 1rem;
+
+  --gap-sm: 0.5rem;
+  --gap-md: 1rem;
+  --gap-lg: 2rem;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: var(--gap-lg);
+}
+
+button {
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 0.7rem;
+  font-weight: 300;
+  color: white;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+button:hover {
+  background-color: var(--color-dark);
+}
+
+table {
+  border-radius: var(--border-radius);
+}
+
+th,
+td {
+  border: var(--border-width) solid var(--color-light);
+  padding-inline: 2rem;
+  text-align: center;
+  align-content: center;
+}
+
+th {
+  background-color: var(--color-primary);
+}
+
+tr {
+  user-select: none;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: var(--color-light);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  padding-top: 2rem;
+  color: var(--color-primary);
+}
