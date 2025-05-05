@@ -92,3 +92,8 @@
   border-collapse: collapse;
   width: 100%;
 }
+
+#icon {
+  width: 12px;
+  height: 12px;
+}
