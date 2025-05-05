@@ -3,7 +3,7 @@ import { getTodo, setTodo } from "./utils.js";
 /**
  * 현재 테이블 순서로 업데이트합니다.
  *
- * @returns {Array<number}
+ * @returns {Array<number>}
  */
 function updateTableOrder() {
   const rows = document.querySelectorAll("tbody tr");

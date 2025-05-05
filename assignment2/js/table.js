@@ -104,5 +104,5 @@ export function renderTableBody(todoList, container, todoHeader) {
   });
 
   const selectAllCheckbox = document.getElementById("select-all-checkbox");
-  resetCheckbox(selectAllCheckbox);
+  if (selectAllCheckbox) resetCheckbox(selectAllCheckbox);
 }
