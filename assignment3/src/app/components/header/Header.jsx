@@ -12,7 +12,7 @@ const Header = ({ handleRenderView, clickedOption }) => {
           <Button
             key={value}
             text={value}
-            onClickButton={handleRenderView}
+            onClick={handleRenderView}
             isSelected={clickedOption === value}
           />
         ))}

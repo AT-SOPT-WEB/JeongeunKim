@@ -111,7 +111,6 @@ const BaseballSection = () => {
   };
 
   const checkValidPlayChange = () => {
-    console.log(playCnt);
     if (playCnt >= CHANCE) {
       setResultText(MESSAGE.LOSE);
 

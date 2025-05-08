@@ -3,10 +3,8 @@
  *
  * @async
  * @function
- * @param {Object} params
- * @param {string} params.user - 검색할 사용자 id
- * @param {Function} params.setUserInfo - 사용자 정보 저장 함수
- * @returns {Promise<void>}
+ * @param {string} userId - 검색할 사용자 ID
+ * @returns {Promise<<Object|null>>}
  */
 export const getUserInfo = async (userId) => {
   try {

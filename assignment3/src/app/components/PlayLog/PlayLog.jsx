@@ -13,7 +13,7 @@ const PlayLog = ({ logList }) => {
 };
 
 PlayLog.propTypes = {
-  logList: PropTypes.string.isRequired,
+  logList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default PlayLog;
