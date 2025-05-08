@@ -1,12 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
 import { useRef, useState } from "react";
-import Input from "../components/input/Input";
+import Input from "../components/Input/Input";
 import { isDuplicate } from "../utils/string";
 import { CHANCE, LENGTH, MESSAGE } from "../constants/baseball";
-import PlayLog from "../components/play-log/PlayLog";
+import PlayLog from "../components/PlayLog/PlayLog";
 import { css } from "@emotion/react";
-import { colors } from "../constants/colors";
 import { Section } from "./Section.styles";
 
 const error = css`
@@ -14,7 +13,7 @@ const error = css`
 `;
 
 const win = css`
-  color: ${colors.secondary};
+  color: ${theme.colors.secondary};
   font-weight: 600;
 `;
 
@@ -63,13 +62,14 @@ const BaseballSection = () => {
    * 엔터 키 입력 시 결과를 체크합니다.
    * @param {React.KeyboardEvent<HTMLInputElement>} e - 키보드 이벤트
    */
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      if (errorMessage) return;
-      const { strike, ball } = checkResult();
-      showResult({ strike, ball });
-      setInputText("");
-    }
+  const handleInputSubmit = (e) => {
+    e.preventDefault();
+
+    if (errorMessage) return;
+
+    const { strike, ball } = checkResult();
+    showResult({ strike, ball });
+    setInputText("");
   };
 
   /**
@@ -136,13 +136,14 @@ const BaseballSection = () => {
 
   return (
     <Section>
-      <Input
-        type="number"
-        text={inputText}
-        handleInputChange={handleInputChange}
-        placeholder="세 자리 숫자를 입력해주세요"
-        onKeyDown={handleKeyDown}
-      />
+      <form onSubmit={handleInputSubmit}>
+        <Input
+          type="number"
+          text={inputText}
+          handleInputChange={handleInputChange}
+          placeholder="세 자리 숫자를 입력해주세요"
+        />
+      </form>
       {errorMessage && <p css={error}>{errorMessage}</p>}
       {resultText && <p css={win}>{resultText}</p>}
       <PlayLog logList={playLog} />
