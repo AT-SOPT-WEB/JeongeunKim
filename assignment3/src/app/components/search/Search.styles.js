@@ -1,16 +1,15 @@
 import styled from "@emotion/styled";
-import { colors } from "../../constants/colors";
 
 export const LogButton = styled.button`
   all: unset;
   cursor: pointer;
   font-size: 1em;
   font-weight: 500;
-  color: ${colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
   padding: 0.5rem 1rem;
-  background-color: ${colors.primary}4D;
-  border-radius: calc(infinity * 1px);
-  border: 1px solid ${colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary}4D;
+  border-radius: 9999px; /* calc(infinity * 1px) 대신 안전한 값 */
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   display: flex;
   gap: 1rem;
 `;

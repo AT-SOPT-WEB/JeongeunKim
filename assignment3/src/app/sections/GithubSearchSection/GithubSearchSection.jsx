@@ -1,11 +1,11 @@
 import { useState } from "react";
-import GithubCard from "../components/github-card/GithubCard";
-import SearchArea from "../components/search/SearchArea";
-import { addLocalStorage, getLocalStorage } from "../utils/storage";
-import { Section } from "./Section.styles";
-import { getUserInfo } from "../api/github";
-import { LOCAL_STORAGE } from "../constants/key";
-import { ERROR_MESSAGE } from "../constants/github";
+import SearchArea from "../../components/search/SearchArea";
+import { addLocalStorage, getLocalStorage } from "../../utils/storage";
+import { Section } from "../Section.styles";
+import { getUserInfo } from "../../api/github";
+import { LOCAL_STORAGE } from "../../constants/key";
+import { ERROR_MESSAGE } from "../../constants/github";
+import GithubCard from "../../components/GithubCard/GithubCard";
 
 const GithubSearchSection = () => {
   const [isShowCard, setIsShowCard] = useState(false);

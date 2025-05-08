@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { VIEW_OPTION } from "./constants/header";
 import Header from "./components/header/Header";
-import GithubSearchSection from "./sections/GithubSearchSection";
-import BaseballSection from "./sections/BaseballSection";
+import GithubSearchSection from "./sections/GithubSearchSection/GithubSearchSection";
+import BaseballSection from "./sections/BaseballSection/BaseballSection";
 import "./App.css";
 
 function App() {

@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
-import { colors } from "../../constants/colors";
 import { fadeInUp } from "../../styles/animations";
 
 export const Card = styled.div`
   position: relative;
   color: white;
   padding: 2rem 3rem;
-  background-color: ${colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
   border-radius: 20px;
   display: flex;
   text-align: center;
@@ -24,8 +23,8 @@ export const Avatar = styled.img`
 export const Chip = styled.div`
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  color: ${colors.primary};
-  background-color: ${colors.secondary};
+  color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.secondary};
   display: flex;
   flex-direction: column;
   font-weight: 600;

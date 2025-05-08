@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import SearchLogButton from "./SearchLogButton";
 import { deleteLocalStorage, getLocalStorage } from "../../utils/storage";
-import Input from "../input/Input";
 import {
   LogButtonContainer,
   SearchContainer,
@@ -9,6 +8,7 @@ import {
 } from "./Search.styles";
 import { LOCAL_STORAGE } from "../../constants/key";
 import { useState } from "react";
+import Input from "../Input/Input";
 
 const SearchArea = ({ handleSearch, searchLog, setSearchLog }) => {
   const [inputText, setInputText] = useState("");

@@ -1,21 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
 import { useRef, useState } from "react";
-import Input from "../components/Input/Input";
-import { isDuplicate } from "../utils/string";
-import { CHANCE, LENGTH, MESSAGE } from "../constants/baseball";
-import PlayLog from "../components/PlayLog/PlayLog";
-import { css } from "@emotion/react";
-import { Section } from "./Section.styles";
-
-const error = css`
-  color: red;
-`;
-
-const win = css`
-  color: ${theme.colors.secondary};
-  font-weight: 600;
-`;
+import Input from "../../components/Input/Input";
+import { isDuplicate } from "../../utils/string";
+import { CHANCE, LENGTH, MESSAGE } from "../../constants/baseball";
+import PlayLog from "../../components/PlayLog/PlayLog";
+import { Section } from "../Section.styles";
+import { ErrorText, ResultText } from "./BaseballSection.styles";
 
 /**
  * 중복되지 않는 랜덤 숫자를 생성합니다.
@@ -39,6 +30,7 @@ const BaseballSection = () => {
   const [playLog, setPlayLog] = useState([]);
   const answer = useRef(generateAnswerNumber());
   const [playCnt, setPlayCnt] = useState(1);
+
   /**
    * 입력값이 변경된 경우 유효성 검사를 진행하고 통과되면 상태를 업데이트 합니다.
    * @param {React.ChangeEvent<HTMLInputElement>} e - 입력 이벤트
@@ -144,8 +136,8 @@ const BaseballSection = () => {
           placeholder="세 자리 숫자를 입력해주세요"
         />
       </form>
-      {errorMessage && <p css={error}>{errorMessage}</p>}
-      {resultText && <p css={win}>{resultText}</p>}
+      {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+      {resultText && <ResultText>{resultText}</ResultText>}
       <PlayLog logList={playLog} />
     </Section>
   );
