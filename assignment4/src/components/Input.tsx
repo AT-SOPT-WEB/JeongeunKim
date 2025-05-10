@@ -8,7 +8,11 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 const Input = ({ id, label, ...props }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && (
+        <label className="text-left font-bold" htmlFor={id}>
+          {label}
+        </label>
+      )}
       <input
         id={id}
         className="focus:border-sky-400 border-gray-300 py-3 rounded-md min-w-128 border px-4 focus:outline-none"
