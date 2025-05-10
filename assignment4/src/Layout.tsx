@@ -1,9 +1,18 @@
 import { Outlet } from "react-router";
+import Header from "./components/Header";
 
-export default function Layout(): React.ReactElement {
+export const HeaderLayout = () => {
   return (
-    <div className="flex h-screen w-screen justify-center p-12">
+    <div className="flex flex-col h-screen w-screen">
+      <Header /> <Outlet />
+    </div>
+  );
+};
+
+export const NoneHeaderLayout = () => {
+  return (
+    <div className="flex flex-col justify-center h-screen w-screen">
       <Outlet />
     </div>
   );
-}
+};
