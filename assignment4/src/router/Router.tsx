@@ -3,6 +3,7 @@ import LoginPage from "../pages/LoginPage";
 import { PATH } from "../constants/path";
 import Layout from "../Layout";
 import MainPage from "../pages/MainPage";
+import SignupPage from "../pages/SignupPage";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <MainPage /> },
       { path: PATH.LOGIN, element: <LoginPage /> },
+      { path: PATH.SIGNUP, element: <SignupPage /> },
     ],
   },
 ]);
