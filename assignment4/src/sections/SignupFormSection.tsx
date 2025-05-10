@@ -6,7 +6,7 @@ import {
   IdForm,
   NicknameForm,
   PasswordForm,
-} from "../components/signup/SignupInputs";
+} from "../components/signup/SignupForm";
 import { PATH } from "../constants/path";
 import { isValidId } from "../utils/string";
 
