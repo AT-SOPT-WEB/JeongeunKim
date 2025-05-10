@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router";
-import LoginPage from "../pages/LoginPage";
 import { PATH } from "../constants/path";
-import MainPage from "../pages/MainPage";
-import SignupPage from "../pages/SignupPage";
 import { HeaderLayout, NoneHeaderLayout } from "../Layout";
+import MyPage from "../pages/MyPage";
+import LoginPage from "../pages/LoginPage";
+import SignupPage from "../pages/SignUpPage";
 
 const router = createBrowserRouter([
   {
     path: PATH.MAIN,
     element: <HeaderLayout />,
-    children: [{ index: true, element: <MainPage /> }],
+    children: [{ path: PATH.MY_PAGE, element: <MyPage /> }],
   },
   {
     path: PATH.MAIN,

@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router";
 import { PATH } from "../constants/path";
 import { SESSION_STORAGE_KEY } from "../constants/storage";
+import { MY_PAGE_SORT } from "../constants/myPage";
 
 const navList = [
-  { text: "내 정보", path: PATH.MY_PAGE },
-  { text: "SOPT 회원 조회하기", path: PATH.MAIN },
+  { text: "내 정보", path: MY_PAGE_SORT.CHANGE_NICKNAME },
+  { text: "SOPT 회원 조회하기", path: MY_PAGE_SORT.SEARCH_MEMBER },
 ];
 
 const Header = () => {
