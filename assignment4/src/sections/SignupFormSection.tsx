@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SIGNUP_STEP } from "../constants/signup";
+import { ERROR_MESSAGE, SIGNUP_STEP } from "../constants/signup";
 import type { SignupStepType } from "../types/signup";
 import { useNavigate } from "react-router";
 import {
@@ -8,42 +8,60 @@ import {
   PasswordForm,
 } from "../components/signup/SignupForm";
 import { PATH } from "../constants/path";
-import { isValidId } from "../utils/string";
+import {
+  isStringWithEnglishNumber,
+  isStringWithKoreanEnglishNumber,
+} from "../utils/string";
+import { postSignup } from "../api/signup";
 
 const SignupFormSection = () => {
   const navigate = useNavigate();
 
-  const [idInput, setIdInput] = useState<string>("");
-  const [nickname, setNickname] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [checkPassword, setCheckPassword] = useState<string>("");
+  const [loginId, setIdInput] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
   const [step, setStep] = useState<SignupStepType>(SIGNUP_STEP.ID);
 
   const changeStep = (nextStep: SignupStepType) => {
     setStep(nextStep);
   };
-  const moveToLogin = () => {
-    alert(`${nickname}님 반가워요!`);
-    navigate(PATH.LOGIN);
+
+  const moveToLogin = async () => {
+    const isSuccess = await postSignup({ loginId, password, nickname });
+
+    if (isSuccess) {
+      navigate(PATH.LOGIN);
+    }
   };
+
   const handleIdNextClick = () => {
-    if (idInput.includes(" ")) alert("아이디에 공백은 존재할 수 없어요.");
-    else if (!isValidId(idInput))
-      alert("아이디는 대소문자와 숫자만 입력할 수 있어요.");
+    if (loginId.includes(" ")) alert(ERROR_MESSAGE.BLANK_NOT_ALLOW);
+    else if (!isStringWithEnglishNumber(loginId))
+      alert(ERROR_MESSAGE.VALID_ID_ERROR);
     else changeStep(SIGNUP_STEP.PASSWORD);
   };
+
   const handlePasswordNextButtonClick = () => {
-    if (password === checkPassword) changeStep(SIGNUP_STEP.NICKNAME);
-    else alert("비밀번호를 확인해주세요.");
+    if (loginId.includes(" ")) alert(ERROR_MESSAGE.BLANK_NOT_ALLOW);
+    else if (!isStringWithEnglishNumber(loginId))
+      alert(ERROR_MESSAGE.VALID_PASSWORD_ERROR);
+    else if (password !== checkPassword)
+      alert(ERROR_MESSAGE.INCONSISTENCY_PASSWORD);
+    else changeStep(SIGNUP_STEP.NICKNAME);
   };
+
   const handleNicknameNextClick = () => {
-    moveToLogin();
+    if (loginId.includes(" ")) alert(ERROR_MESSAGE.BLANK_NOT_ALLOW);
+    else if (!isStringWithKoreanEnglishNumber(loginId))
+      alert(ERROR_MESSAGE.VALID_PASSWORD_ERROR);
+    else moveToLogin();
   };
 
   const stepComponents = {
     [SIGNUP_STEP.ID]: (
       <IdForm
-        value={idInput}
+        value={loginId}
         handleValueChange={(e) => setIdInput(e.target.value)}
         handleNextButtonClick={handleIdNextClick}
       />
