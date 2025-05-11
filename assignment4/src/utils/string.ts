@@ -7,3 +7,16 @@ export const isStringWithKoreanEnglishNumber = (str: string) => {
   const regex = /^[가-힣a-zA-Z0-9]+$/;
   return regex.test(str);
 };
+
+export const createQueryParamUrl = ({
+  url,
+  params,
+}: {
+  url: string;
+  params: string;
+}) => {
+  const queryParams = new URLSearchParams(params);
+  queryParams.append("keyword", params);
+
+  return `${url}?${queryParams.toString()}`;
+};
