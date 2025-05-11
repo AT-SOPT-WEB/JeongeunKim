@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import type { MyPageSort } from "../types/myPage";
 import { MY_PAGE_SORT } from "../constants/myPage";
-import MyPageFormSection from "../sections/MyPageFormSection";
+import MyPageRenderSection from "../sections/MyPageRenderSection";
 
 const toKoreanMyPageTitle = (type: MyPageSort) => {
   switch (type) {
@@ -27,7 +27,7 @@ const MyPage = () => {
   return (
     <div className="flex flex-col gap-4 place-content-center items-center">
       <h2 className="text-2xl font-bold">{title}</h2>
-      <MyPageFormSection type={type as MyPageSort} />
+      <MyPageRenderSection type={type as MyPageSort} />
     </div>
   );
 };

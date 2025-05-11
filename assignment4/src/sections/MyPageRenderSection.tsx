@@ -2,20 +2,26 @@ import { useState } from "react";
 import {
   MyInfoForm,
   SearchNicknameForm,
-} from "../components/myPage/MyPageInputs";
+} from "../components/myPage/MyPageForm";
 import { MY_PAGE_SORT } from "../constants/myPage";
 import type { MyPageSort } from "../types/myPage";
+import NicknameList from "../components/myPage/NicknameList";
+import { getUsersNickname } from "../api/user";
 
 interface Props {
   type: MyPageSort;
 }
 
-const MyPageFormSection = ({ type }: Props) => {
+const MyPageRenderSection = ({ type }: Props) => {
   const [newNickname, setNewNickname] = useState("");
   const [searchNickname, setSearchNickname] = useState("");
+  const [userList, setUserList] = useState([]);
 
   const handleNewNicknameClick = () => {};
-  const handleSearchNicknameClick = () => {};
+  const handleSearchNicknameClick = async () => {
+    const list = await getUsersNickname({ keyword: searchNickname });
+    setUserList(list);
+  };
 
   const renderContent = {
     [MY_PAGE_SORT.CHANGE_NICKNAME]: (
@@ -26,15 +32,18 @@ const MyPageFormSection = ({ type }: Props) => {
       />
     ),
     [MY_PAGE_SORT.SEARCH_MEMBER]: (
-      <SearchNicknameForm
-        value={searchNickname}
-        handleValueChange={(e) => setSearchNickname(e.target.value)}
-        handleButtonClick={handleSearchNicknameClick}
-      />
+      <div className="flex flex-col gap-8 justify-center">
+        <SearchNicknameForm
+          value={searchNickname}
+          handleValueChange={(e) => setSearchNickname(e.target.value)}
+          handleButtonClick={handleSearchNicknameClick}
+        />
+        <NicknameList userList={userList} />
+      </div>
     ),
   };
 
   return <div className="flex flex-col gap-4">{renderContent[type]}</div>;
 };
 
-export default MyPageFormSection;
+export default MyPageRenderSection;
