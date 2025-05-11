@@ -12,12 +12,12 @@ import {
   isStringWithEnglishNumber,
   isStringWithKoreanEnglishNumber,
 } from "../utils/string";
-import { postSignup } from "../api/signup";
+import { postSignup } from "../api/auth";
 
 const SignupFormSection = () => {
   const navigate = useNavigate();
 
-  const [loginId, setIdInput] = useState("");
+  const [loginId, setLoginId] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
@@ -62,7 +62,7 @@ const SignupFormSection = () => {
     [SIGNUP_STEP.ID]: (
       <IdForm
         value={loginId}
-        handleValueChange={(e) => setIdInput(e.target.value)}
+        handleValueChange={(e) => setLoginId(e.target.value)}
         handleNextButtonClick={handleIdNextClick}
       />
     ),

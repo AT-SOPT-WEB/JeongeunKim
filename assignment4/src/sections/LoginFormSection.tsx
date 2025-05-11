@@ -3,15 +3,18 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import { useNavigate } from "react-router";
 import { PATH } from "../constants/path";
+import { postSignin } from "../api/auth";
+import { MY_PAGE_SORT } from "../constants/myPage";
 
 const LoginFormSection = () => {
   const navigate = useNavigate();
-  const [id, setId] = useState("");
+  const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLoginButtonClick = () => {
-    // 로그인 로직 추가
-    navigate(PATH.MY_PAGE);
+  const handleLoginButtonClick = async () => {
+    const isSuccess = await postSignin({ loginId, password });
+
+    if (isSuccess) navigate(PATH.MY_PAGE + `/${MY_PAGE_SORT.CHANGE_NICKNAME}`);
   };
 
   return (
@@ -19,8 +22,8 @@ const LoginFormSection = () => {
       <Input
         id="아이디"
         placeholder="아이디"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
+        value={loginId}
+        onChange={(e) => setLoginId(e.target.value)}
       />
       <Input
         id="비밀번호"

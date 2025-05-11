@@ -3,13 +3,13 @@ import { PATH } from "../constants/path";
 import { HeaderLayout, NoneHeaderLayout } from "../Layout";
 import MyPage from "../pages/MyPage";
 import LoginPage from "../pages/LoginPage";
-import SignupPage from "../pages/SignUpPage";
+import SignupPage from "../pages/SignupPage";
 
 const router = createBrowserRouter([
   {
     path: PATH.MAIN,
     element: <HeaderLayout />,
-    children: [{ path: PATH.MY_PAGE, element: <MyPage /> }],
+    children: [{ path: PATH.MY_PAGE_TYPE, element: <MyPage /> }],
   },
   {
     path: PATH.MAIN,
