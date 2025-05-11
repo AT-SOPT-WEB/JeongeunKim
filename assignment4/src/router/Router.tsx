@@ -12,7 +12,6 @@ const router = createBrowserRouter([
     children: [{ path: PATH.MY_PAGE_TYPE, element: <MyPage /> }],
   },
   {
-    path: PATH.MAIN,
     element: <NoneHeaderLayout />,
     children: [
       {

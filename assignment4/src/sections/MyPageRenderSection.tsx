@@ -6,18 +6,24 @@ import {
 import { MY_PAGE_SORT } from "../constants/myPage";
 import type { MyPageSort } from "../types/myPage";
 import NicknameList from "../components/myPage/NicknameList";
-import { getUsersNickname } from "../api/user";
+import { getUsersNickname, patchUserNickname } from "../api/user";
+import { useNickname } from "../hooks/useNickname";
 
 interface Props {
   type: MyPageSort;
 }
 
 const MyPageRenderSection = ({ type }: Props) => {
+  const { setNickname } = useNickname();
+
   const [newNickname, setNewNickname] = useState("");
   const [searchNickname, setSearchNickname] = useState("");
   const [userList, setUserList] = useState([]);
 
-  const handleNewNicknameClick = () => {};
+  const handleNewNicknameClick = async () => {
+    const isSuccess = await patchUserNickname({ nickname: newNickname });
+    if (isSuccess) setNickname(newNickname);
+  };
   const handleSearchNicknameClick = async () => {
     const list = await getUsersNickname({ keyword: searchNickname });
     setUserList(list);

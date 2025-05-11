@@ -2,8 +2,9 @@ import { useNavigate } from "react-router";
 import { PATH } from "../constants/path";
 import { SESSION_STORAGE_KEY } from "../constants/storage";
 import { MY_PAGE_SORT } from "../constants/myPage";
-import { useEffect, useState } from "react";
+import { useNickname } from "../hooks/useNickname";
 import { getNickname } from "../api/user";
+import { useEffect } from "react";
 
 const navList = [
   { text: "내 정보", path: MY_PAGE_SORT.CHANGE_NICKNAME },
@@ -12,7 +13,7 @@ const navList = [
 
 const Header = () => {
   const navigate = useNavigate();
-  const [nickname, setNickname] = useState("");
+  const { nickname, setNickname } = useNickname();
 
   const handleLogout = () => {
     sessionStorage.removeItem(SESSION_STORAGE_KEY.USER_ID);
@@ -22,12 +23,11 @@ const Header = () => {
 
   useEffect(() => {
     const fetchNickname = async () => {
-      const fetchedNickname = await getNickname();
-      if (fetchedNickname) setNickname(fetchedNickname);
+      const nickname = await getNickname();
+      setNickname(nickname);
     };
-
     fetchNickname();
-  }, []);
+  }, [setNickname]);
 
   return (
     <header className="bg-sky-300 p-4 flex justify-between">

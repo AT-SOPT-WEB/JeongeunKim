@@ -6,6 +6,9 @@ import { createQueryParamUrl } from "../utils/string";
 interface GetUsersNicknameProps {
   keyword: string;
 }
+interface PatchUsersNicknameProps {
+  nickname: string;
+}
 
 export const getNickname = async () => {
   const url = API_BASE_URL + END_POINT.NICKNAME;
@@ -15,7 +18,7 @@ export const getNickname = async () => {
     const { data } = await axios({
       url,
       method: "get",
-      headers: { userId: userId },
+      headers: { userId },
     });
     const { success, code, message, data: resultData } = data;
 
@@ -53,5 +56,31 @@ export const getUsersNickname = async ({ keyword }: GetUsersNicknameProps) => {
   } catch (error) {
     alert(error);
     return [];
+  }
+};
+
+export const patchUserNickname = async ({
+  nickname,
+}: PatchUsersNicknameProps) => {
+  const url = API_BASE_URL + END_POINT.USERS;
+  const userId = sessionStorage.getItem(SESSION_STORAGE_KEY.USER_ID);
+
+  try {
+    const { data } = await axios({
+      url,
+      method: "patch",
+      headers: { userId },
+      data: { nickname },
+    });
+    const { success, message } = data;
+
+    if (success) alert(`${nickname}으로 변경되었어요`);
+    else alert(message);
+
+    return success;
+  } catch (error) {
+    alert(error);
+
+    return false;
   }
 };
