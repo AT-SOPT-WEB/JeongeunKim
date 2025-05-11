@@ -2,6 +2,8 @@ import { useNavigate } from "react-router";
 import { PATH } from "../constants/path";
 import { SESSION_STORAGE_KEY } from "../constants/storage";
 import { MY_PAGE_SORT } from "../constants/myPage";
+import { useEffect, useState } from "react";
+import { getNickname } from "../api/user";
 
 const navList = [
   { text: "내 정보", path: MY_PAGE_SORT.CHANGE_NICKNAME },
@@ -10,12 +12,22 @@ const navList = [
 
 const Header = () => {
   const navigate = useNavigate();
+  const [nickname, setNickname] = useState("");
 
   const handleLogout = () => {
     sessionStorage.removeItem(SESSION_STORAGE_KEY.USER_ID);
     alert("로그아웃되었습니다!");
     navigate(PATH.LOGIN);
   };
+
+  useEffect(() => {
+    const fetchNickname = async () => {
+      const fetchedNickname = await getNickname();
+      if (fetchedNickname) setNickname(fetchedNickname);
+    };
+
+    fetchNickname();
+  }, []);
 
   return (
     <header className="bg-sky-300 p-4 flex justify-between">
@@ -34,7 +46,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <p className="font-bold text-white">nickname</p>
+      <p className="font-bold text-white">{nickname}</p>
     </header>
   );
 };

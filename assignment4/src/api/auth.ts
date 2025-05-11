@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_BASE_URL, END_POINT } from "../constants/api";
+import { SESSION_STORAGE_KEY } from "../constants/storage";
 
 interface PostSigninProps {
   loginId: string;
@@ -21,9 +22,11 @@ export const postSignin = async ({ loginId, password }: PostSigninProps) => {
       method: "post",
       data: { loginId, password },
     });
-    const { success, message } = data;
+    const { success, code, message, data: resultData } = data;
 
-    if (!success) {
+    if (success && code === "SUCCESS") {
+      sessionStorage.setItem(SESSION_STORAGE_KEY.USER_ID, resultData.userId);
+    } else {
       alert(message);
     }
 
