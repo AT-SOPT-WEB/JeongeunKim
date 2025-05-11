@@ -1,5 +1,9 @@
 import { type ChangeEventHandler } from "react";
-import { VALID_ID, VALID_PASSWORD } from "../../constants/signup";
+import {
+  VALID_ID,
+  VALID_NICKNAME,
+  VALID_PASSWORD,
+} from "../../constants/signup";
 import Input from "../Input";
 import Button from "../Button";
 
@@ -19,6 +23,7 @@ export const IdForm = ({
   handleValueChange,
   handleNextButtonClick,
 }: InputProps) => {
+  const isValid = value.length >= VALID_ID.MIN && value.length <= VALID_ID.MAX;
   return (
     <>
       <Input
@@ -30,11 +35,7 @@ export const IdForm = ({
         minLength={VALID_ID.MIN}
         maxLength={VALID_ID.MAX}
       />
-      <Button
-        text="다음"
-        onClick={handleNextButtonClick}
-        disabled={!value.trim()}
-      />
+      <Button text="다음" onClick={handleNextButtonClick} disabled={!isValid} />
     </>
   );
 };
@@ -46,6 +47,9 @@ export const PasswordForm = ({
   handleCheckValueValue,
   handleNextButtonClick,
 }: PasswordInputProps) => {
+  const isValid =
+    value.length >= VALID_PASSWORD.MIN && value.length <= VALID_PASSWORD.MAX;
+
   return (
     <>
       <Input
@@ -66,11 +70,7 @@ export const PasswordForm = ({
         value={checkValue}
         onChange={handleCheckValueValue}
       />
-      <Button
-        text="다음"
-        onClick={handleNextButtonClick}
-        disabled={!value.trim().length || !checkValue.trim().length}
-      />
+      <Button text="다음" onClick={handleNextButtonClick} disabled={!isValid} />
     </>
   );
 };
@@ -80,6 +80,9 @@ export const NicknameForm = ({
   handleValueChange,
   handleNextButtonClick,
 }: InputProps) => {
+  const isValid =
+    value.length >= VALID_NICKNAME.MIN && value.length <= VALID_NICKNAME.MAX;
+
   return (
     <>
       <Input
@@ -88,11 +91,13 @@ export const NicknameForm = ({
         id="닉네임"
         value={value}
         onChange={handleValueChange}
+        maxLength={VALID_NICKNAME.MAX}
+        minLength={VALID_NICKNAME.MIN}
       />
       <Button
         text="회원가입 하기"
         onClick={handleNextButtonClick}
-        disabled={!value.trim()}
+        disabled={!isValid}
       />
     </>
   );

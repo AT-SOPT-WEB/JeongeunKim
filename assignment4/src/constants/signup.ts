@@ -10,6 +10,11 @@ export const SIGNUP_STEP = {
 } as const;
 
 export const VALID_PASSWORD = {
+  MIN: 8,
+  MAX: 20,
+};
+
+export const VALID_NICKNAME = {
   MIN: 1,
   MAX: 20,
 };
