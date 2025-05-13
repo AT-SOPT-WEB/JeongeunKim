@@ -20,3 +20,11 @@ export const createQueryParamUrl = ({
 
   return `${url}?${queryParams.toString()}`;
 };
+
+export const createPathUrl = (links: Array<string>) => {
+  return links
+    .map((link) => link.replace(/^\/+|\/+$/g, ""))
+    .filter(Boolean)
+    .join("/")
+    .replace(/^/, "/");
+};

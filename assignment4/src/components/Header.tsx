@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { PATH } from "../constants/path";
 import { SESSION_STORAGE_KEY } from "../constants/storage";
 import { MY_PAGE_SORT } from "../constants/myPage";
 import { useNickname } from "../hooks/useNickname";
 import { getNickname } from "../api/user";
 import { useEffect } from "react";
+import { createPathUrl } from "../utils/string";
 
 const navList = [
   { text: "내 정보", path: MY_PAGE_SORT.CHANGE_NICKNAME },
@@ -30,13 +31,13 @@ const Header = () => {
   }, [setNickname]);
 
   return (
-    <header className="bg-sky-300 p-4 flex justify-between">
+    <header className="bg-primary p-4 flex justify-between">
       <h1 className="font-bold text-white">SOPT 회원 조회 하기</h1>
       <nav>
         <ul className="flex gap-12 text-white">
           {navList.map(({ text, path }) => (
             <li key={text} className="hover:font-bold">
-              <a href={path}>{text}</a>
+              <Link to={createPathUrl([PATH.MY_PAGE, path])}>{text}</Link>
             </li>
           ))}
           <li>
